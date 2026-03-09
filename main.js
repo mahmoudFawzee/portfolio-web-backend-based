@@ -1,9 +1,9 @@
-const PROFILE_API_URL =
-  "https://fullstack-node-flutter-portfolio.vercel.app/api/profile/mamdofa004";
-const PROJECTS_API_URL =
-  "https://fullstack-node-flutter-portfolio.vercel.app/api/projects/mamdofa004";
-const SKILLS_API_URL =
-  "https://fullstack-node-flutter-portfolio.vercel.app/api/skills/mamdofa004";
+const API_BASE_URL = "https://fullstack-node-flutter-portfolio.vercel.app";
+const USERNAME = "mamdofa004";
+
+const PROFILE_API_URL = `${API_BASE_URL}/api/profile/${USERNAME}`;
+const PROJECTS_API_URL = `${API_BASE_URL}/api/projects/${USERNAME}`;
+const SKILLS_API_URL = `${API_BASE_URL}/api/skills/${USERNAME}`;
 
 import { getSkillIcon } from "./skillsIcons.js";
 
@@ -62,7 +62,11 @@ async function init() {
     ]);
 
     if (!profileRes.ok || !projectsRes.ok) {
-      throw new Error("Failed to fetch essential portfolio data");
+      console.error("API error:", {
+        profileStatus: profileRes.status,
+        projectsStatus: projectsRes.status,
+      });
+      throw new Error(`Failed to fetch essential portfolio data (Profile: ${profileRes.status}, Projects: ${projectsRes.status})`);
     }
 
     const profileData = await profileRes.json();
@@ -105,6 +109,7 @@ async function fetchSkills() {
     const skillsRes = await fetch(SKILLS_API_URL);
 
     if (!skillsRes.ok) {
+      console.error(`Skills API failed: ${skillsRes.status} ${skillsRes.statusText}`);
       throw new Error(`Skills API failed with status: ${skillsRes.status}`);
     }
 
@@ -406,17 +411,17 @@ function showSkillDetails(skill) {
             <h3 style="margin-bottom: 20px; color: var(--primary);">Learning Resources</h3>
             <div class="refs-list">
                 ${skill.refs
-                  .map((ref) => {
-                    const isClickable = ref.url && ref.url.trim() !== "";
-                    return `
+      .map((ref) => {
+        const isClickable = ref.url && ref.url.trim() !== "";
+        return `
                         <${isClickable ? 'a href="' + ref.url + '" target="_blank"' : "div"} class="ref-item ${isClickable ? "clickable" : ""}">
                             <span class="ref-icon">${isClickable ? "🔗" : "📖"}</span>
                             <span class="ref-name">${ref.name}</span>
                             ${isClickable ? '<span class="external-icon">↗</span>' : ""}
                         </${isClickable ? "a" : "div"}>
                     `;
-                  })
-                  .join("")}
+      })
+      .join("")}
             </div>
         </div>
     `;
@@ -456,31 +461,31 @@ function renderProjectDetails(project) {
             
             <div class="links-section">
                 ${Object.entries(project.links || {})
-                  .map(([key, url]) => {
-                    const iconMap = {
-                      google_play:
-                        "https://cdn-icons-png.flaticon.com/128/732/732208.png",
-                      app_store:
-                        "https://cdn-icons-png.flaticon.com/128/888/888841.png",
-                      youtube:
-                        "https://cdn-icons-png.flaticon.com/128/1384/1384060.png",
-                      github:
-                        "https://cdn-icons-png.flaticon.com/128/25/25231.png",
-                      githup:
-                        "https://cdn-icons-png.flaticon.com/128/25/25231.png",
-                      website:
-                        "https://cdn-icons-png.flaticon.com/128/1006/1006771.png",
-                    };
-                    const iconUrl = iconMap[key.toLowerCase()];
-                    if (!iconUrl || !url) return "";
+      .map(([key, url]) => {
+        const iconMap = {
+          google_play:
+            "https://cdn-icons-png.flaticon.com/128/732/732208.png",
+          app_store:
+            "https://cdn-icons-png.flaticon.com/128/888/888841.png",
+          youtube:
+            "https://cdn-icons-png.flaticon.com/128/1384/1384060.png",
+          github:
+            "https://cdn-icons-png.flaticon.com/128/25/25231.png",
+          githup:
+            "https://cdn-icons-png.flaticon.com/128/25/25231.png",
+          website:
+            "https://cdn-icons-png.flaticon.com/128/1006/1006771.png",
+        };
+        const iconUrl = iconMap[key.toLowerCase()];
+        if (!iconUrl || !url) return "";
 
-                    return `
+        return `
                         <a href="${url}" target="_blank" class="link-icon" title="${key.replace("_", " ")}">
                             <img src="${iconUrl}" alt="${key}">
                         </a>
                     `;
-                  })
-                  .join("")}
+      })
+      .join("")}
             </div>
 
             <div class="gallery-section">
@@ -490,8 +495,8 @@ function renderProjectDetails(project) {
                 </div>
                 <div class="gallery-grid-vertical">
                     ${project.images
-                      .map(
-                        (img, index) => `
+      .map(
+        (img, index) => `
                         <div class="phone-mockup" onclick="openModal(${index})">
                             <div class="phone-frame">
                                 <div class="phone-screen">
@@ -503,8 +508,8 @@ function renderProjectDetails(project) {
                             </div>
                         </div>
                     `,
-                      )
-                      .join("")}
+      )
+      .join("")}
                 </div>
             </div>
         </div>
