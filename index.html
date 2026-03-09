@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahmoud Fawzy | Portfolio</title>
+    <meta name="description" content="Portfolio of Mahmoud Fawzy, Fullstack & Flutter Mobile Developer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
+</head>
+
+<body>
+    <div id="loader" class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">
+                <img src="/assets/favicon.png" alt="Logo" class="nav-logo-icon">
+                <span>MF</span>
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#projects" class="nav-link">Projects</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <main id="app" style="display: none;">
+        <!-- Home View -->
+        <div id="home-view">
+            <section id="home" class="hero">
+                <div class="container">
+                    <div class="glass-card profile-card">
+                        <div class="profile-header">
+                            <div class="image-wrapper">
+                                <img id="profile-image" src="" alt="Profile Image" class="profile-img">
+                            </div>
+                            <div class="header-info">
+                                <h1 id="name"></h1>
+                                <p id="job" class="badge"></p>
+                                <div id="cv-actions" class="cv-actions"></div>
+                            </div>
+                        </div>
+
+                        <div class="profile-content">
+                            <div class="content-section">
+                                <h3><span class="icon">🚀</span> Value Proposition</h3>
+                                <p id="valueProp"></p>
+                            </div>
+
+                            <div class="content-section">
+                                <h3><span class="icon">💼</span> Professional Background</h3>
+                                <p id="professionalBackground"></p>
+                            </div>
+
+                            <div class="content-section">
+                                <h3><span class="icon">✨</span> Personal Touch</h3>
+                                <p id="personalTouch"></p>
+                            </div>
+
+                        </div>
+
+                        <div class="cta-section">
+                            <a href="#contact" class="btn primary">Get In Touch</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="skills" class="skills-section reveal">
+                <div class="container">
+                    <div class="section-header-center">
+                        <h2 class="section-title">Skills & Learning Resources</h2>
+                        <p class="section-subtitle">A collection of technologies I've mastered and the resources I've
+                            used.</p>
+                    </div>
+                    <div id="skills-grid" class="skills-grid">
+                        <!-- Skills will be injected here -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="contact-section">
+                <div class="container">
+                    <div class="glass-card">
+                        <h2 class="section-title">Contact Me</h2>
+                        <div id="contact-grid" class="contact-grid">
+                            <!-- Contact items will be injected here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="projects-section">
+                <div class="container">
+                    <div class="section-header-center">
+                        <h2 class="section-title">Featured Work</h2>
+                        <p class="section-subtitle">A collection of projects I've built with passion and precision.</p>
+                    </div>
+                    <div id="projects-grid" class="projects-grid">
+                        <!-- Projects will be injected here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Project Details View -->
+        <div id="project-view" style="display: none;">
+            <div class="container">
+                <div class="back-nav">
+                    <a href="#" class="btn secondary">← Back to Projects</a>
+                </div>
+                <div id="project-details" class="glass-card project-details-card">
+                    <!-- Project details content will be injected here -->
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container footer-container">
+                <div class="footer-divider"></div>
+                <div class="footer-content">
+                    <div class="footer-info">
+                        <p class="footer-author">Designed & Developed by <span>Mahmoud Fawzy</span></p>
+                        <p class="footer-copyright">© <span id="footer-year"></span> Mahmoud Fawzy. All rights reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <div id="image-modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-content-wrapper">
+            <button class="modal-nav prev" id="modal-prev">&#10094;</button>
+            <img class="modal-content" id="modal-image">
+            <button class="modal-nav next" id="modal-next">&#10095;</button>
+        </div>
+    </div>
+
+    <div id="skill-modal" class="modal">
+        <span class="modal-close" id="skill-modal-close">&times;</span>
+        <div class="modal-content-wrapper">
+            <div id="skill-details" class="glass-card skill-details-card">
+                <!-- Skill refs will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <div id="error-message" class="error-container" style="display: none;">
+        <div class="error-card">
+            <h2>Oops!</h2>
+            <p>Something went wrong while fetching the data. Please make sure the backend is running.</p>
+            <button onclick="window.location.reload()" class="btn">Retry</button>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
