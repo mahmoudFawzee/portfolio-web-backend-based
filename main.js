@@ -454,27 +454,22 @@ function renderProjectDetails(project) {
   elements.projectDetails.innerHTML = `
         <div class="detail-header">
             <img src="${project.cover}" alt="${project.name}" class="detail-cover">
-        </div>
-        <div class="detail-content">
-            <h1>${project.name}</h1>
-            <p class="detail-summary">${project.summary}</p>
-            
-            <div class="links-section">
+            <div class="links-section overlay">
                 ${Object.entries(project.links || {})
       .map(([key, url]) => {
         const iconMap = {
           google_play:
             "https://cdn-icons-png.flaticon.com/128/732/732208.png",
           app_store:
-            "https://cdn-icons-png.flaticon.com/128/888/888841.png",
+            "https://cdn-icons-png.flaticon.com/128/731/731985.png",
           youtube:
             "https://cdn-icons-png.flaticon.com/128/1384/1384060.png",
           github:
-            "https://cdn-icons-png.flaticon.com/128/25/25231.png",
+            "https://cdn-icons-png.flaticon.com/128/733/733553.png",
           githup:
-            "https://cdn-icons-png.flaticon.com/128/25/25231.png",
+            "https://cdn-icons-png.flaticon.com/128/733/733553.png",
           website:
-            "https://cdn-icons-png.flaticon.com/128/1006/1006771.png",
+            "https://cdn-icons-png.flaticon.com/128/841/841364.png",
         };
         const iconUrl = iconMap[key.toLowerCase()];
         if (!iconUrl || !url) return "";
@@ -487,6 +482,12 @@ function renderProjectDetails(project) {
       })
       .join("")}
             </div>
+        </div>
+        <div class="detail-content">
+            <div class="project-title-header">
+                <h1>${project.name}</h1>
+            </div>
+            <p class="detail-summary">${project.summary}</p>
 
             <div class="gallery-section">
                 <div class="gallery-header">
