@@ -1171,7 +1171,24 @@ body {
     }
 
     .detail-header {
+        aspect-ratio: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .detail-cover {
         aspect-ratio: 16/9;
+        height: auto;
+    }
+
+    .links-section.overlay {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin: 20px;
+        width: calc(100% - 40px);
+        box-sizing: border-box;
+        justify-content: center;
     }
 
     .detail-content {
